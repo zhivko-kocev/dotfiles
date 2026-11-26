@@ -4,7 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
-packages=(zsh git mise agents zed)
+packages=(zsh git mise agents zed ultron apps bin chrome)
 
 say() { printf '==> %s\n' "$*"; }
 die() { printf 'error: %s\n' "$*" >&2; exit 1; }
@@ -12,8 +12,10 @@ die() { printf 'error: %s\n' "$*" >&2; exit 1; }
 command -v stow >/dev/null || die "GNU stow is not installed. Install it with: sudo pacman -S stow"
 
 # 1. Real parent folders first, so stow links files and not whole folders.
-say "Creating ~/.config/git, ~/.config/mise and ~/.agents/skills"
-mkdir -p "$HOME/.config/git" "$HOME/.config/mise" "$HOME/.agents/skills"
+say "Creating the shared folders under ~/.config, ~/.local and ~/.agents"
+mkdir -p "$HOME/.config/git" "$HOME/.config/mise" "$HOME/.agents/skills" \
+  "$HOME/.config/ultron/conf.d" "$HOME/.config/ultron/sway" \
+  "$HOME/.local/bin" "$HOME/.local/share/applications"
 
 # 2. Move files that would block stow out of the way.
 say "Checking for files that would conflict"

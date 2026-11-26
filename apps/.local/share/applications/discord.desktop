@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Discord
+Comment=Discord as a Chrome app window
+Exec=google-chrome-stable --app=https://discord.com/channels/@me
+Terminal=false
+Categories=Network;InstantMessaging;

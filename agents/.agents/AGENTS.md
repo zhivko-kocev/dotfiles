@@ -143,3 +143,5 @@ NON-NEGOTIABLE. These apply globally.
 ## This machine
 
 This PC runs ultron (Arch + sway). Before opening anything for the user, using sudo, or using the local model, read skill://ultron.
+
+The dotfiles repo is public: never write tokens or other secrets into any file under `~/Projects/dotfiles` or its links (`~/.zshrc`, `~/.zshenv`, `~/.config/git/config`, `~/.config/ultron/…`, …). Put token exports in `~/.config/zsh/secrets.zsh` (untracked, mode 600) instead. This overrides the Secrets rule above about storing tokens in the shell profile.

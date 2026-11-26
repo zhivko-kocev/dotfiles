@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Stremio
+Comment=Stremio web app with the local streaming service
+Exec=stremio
+Terminal=false
+Categories=AudioVideo;Video;Player;

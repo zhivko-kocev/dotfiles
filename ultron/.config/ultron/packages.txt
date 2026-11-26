@@ -1,0 +1,17 @@
+# Extra packages for ultron to install (official or AUR), one per line.
+
+# Browser
+google-chrome
+
+# Apps
+libreoffice-fresh
+qbittorrent
+stremio-service
+localsend-bin
+
+# C/C++ toolchain
+clang
+llvm
+lld
+cmake
+ninja

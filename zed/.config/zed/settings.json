@@ -4,9 +4,6 @@
     "metrics": true,
     "anthropic_retention": false
   },
-  "session": {
-    "trust_all_worktrees": true
-  },
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",

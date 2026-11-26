@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Stremio: the local streaming service plus the web app in a Chrome app window.
+set -euo pipefail
+
+for cmd in stremio-service google-chrome-stable; do
+  if ! command -v "$cmd" >/dev/null; then
+    printf 'stremio: %s is not installed. Install it with: yay -S %s\n' "$cmd" \
+      "$([[ $cmd == stremio-service ]] && echo stremio-service || echo google-chrome)" >&2
+    exit 1
+  fi
+done
+
+if ! pgrep -x stremio-service >/dev/null; then
+  echo "Starting stremio-service"
+  setsid -f stremio-service >/dev/null 2>&1 </dev/null
+fi
+
+echo "Opening the Stremio web app"
+setsid -f google-chrome-stable --app=https://web.stremio.com/ >/dev/null 2>&1 </dev/null
