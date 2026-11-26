@@ -61,8 +61,9 @@ zsh_path=/usr/bin/zsh
 current=$(getent passwd "$USER" | cut -d: -f7)
 if [[ $current != "$zsh_path" ]]; then
   [[ -x $zsh_path ]] || die "zsh is not installed. Install it with: sudo pacman -S zsh"
-  say "Changing your login shell to zsh (asks for your password)"
-  chsh -s "$zsh_path"
+  say "Changing your login shell to zsh (sudo may ask for your password)"
+  # sudo, not plain chsh: chsh asks for the password on the terminal itself, which hangs when run from a script.
+  sudo chsh -s "$zsh_path" "$USER"
 fi
 
 say "Done. Open a new terminal to use the new shell settings."
