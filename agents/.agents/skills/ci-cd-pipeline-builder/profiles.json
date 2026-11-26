@@ -1,0 +1,106 @@
+{
+  "node": {
+    "detect": ["package.json"],
+    "pm_indicators": {
+      "pnpm-lock.yaml": "pnpm",
+      "yarn.lock": "yarn",
+      "package-lock.json": "npm"
+    },
+    "default_pm": "npm",
+    "scripts_source": "package.json",
+    "package_managers": {
+      "npm": {
+        "install": "npm ci",
+        "lint": "npm run lint",
+        "test": "npm test",
+        "build": "npm run build"
+      },
+      "pnpm": {
+        "install": "pnpm install --frozen-lockfile",
+        "lint": "pnpm lint",
+        "test": "pnpm test",
+        "build": "pnpm build"
+      },
+      "yarn": {
+        "install": "yarn install --frozen-lockfile",
+        "lint": "yarn lint",
+        "test": "yarn test",
+        "build": "yarn build"
+      }
+    },
+    "github_setup": [
+      "- uses: actions/checkout@v4",
+      "- uses: actions/setup-node@v4",
+      "  with:",
+      "    node-version: '22'"
+    ],
+    "gitlab_image": "node:22"
+  },
+  "python": {
+    "detect": ["pyproject.toml", "requirements.txt"],
+    "pm_indicators": {
+      "requirements.txt": "pip",
+      "pyproject.toml": "pyproject"
+    },
+    "default_pm": "pip",
+    "package_managers": {
+      "pip": {
+        "install": "python3 -m pip install -r requirements.txt",
+        "lint": "python3 -m ruff check .",
+        "test": "python3 -m pytest",
+        "build": null
+      },
+      "pyproject": {
+        "install": "python3 -m pip install .",
+        "lint": "python3 -m ruff check .",
+        "test": "python3 -m pytest",
+        "build": null
+      }
+    },
+    "github_setup": [
+      "- uses: actions/checkout@v4",
+      "- uses: actions/setup-python@v5",
+      "  with:",
+      "    python-version: '3.12'"
+    ],
+    "gitlab_image": "python:3.12"
+  },
+  "go": {
+    "detect": ["go.mod"],
+    "default_pm": "go",
+    "package_managers": {
+      "go": {
+        "install": null,
+        "lint": "go vet ./...",
+        "test": "go test ./...",
+        "build": "go build ./..."
+      }
+    },
+    "github_setup": [
+      "- uses: actions/checkout@v4",
+      "- uses: actions/setup-go@v5",
+      "  with:",
+      "    go-version: '1.22'"
+    ],
+    "gitlab_image": "golang:1.22"
+  },
+  "dotnet": {
+    "detect": ["*.sln", "*.csproj", "*.fsproj", "global.json"],
+    "default_pm": "dotnet",
+    "package_managers": {
+      "dotnet": {
+        "install": "dotnet restore",
+        "lint": "dotnet format --verify-no-changes",
+        "test": "dotnet test --no-restore",
+        "build": "dotnet build --no-restore --configuration Release"
+      }
+    },
+    "github_setup": [
+      "- uses: actions/checkout@v4",
+      "- uses: actions/setup-dotnet@v4",
+      "  with:",
+      "    dotnet-version: '8.0.x'"
+    ],
+    "gitlab_image": "mcr.microsoft.com/dotnet/sdk:8.0"
+  }
+}

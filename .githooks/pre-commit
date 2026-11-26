@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+command -v gitleaks >/dev/null || { echo "gitleaks is not installed: sudo pacman -S gitleaks" >&2; exit 1; }
+exec gitleaks git --pre-commit --staged --redact --no-banner

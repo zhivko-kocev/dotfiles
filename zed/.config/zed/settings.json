@@ -1,0 +1,26 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": true,
+    "anthropic_retention": false
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "base_keymap": "VSCode",
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Dark",
+    "dark": "Gruvbox Dark"
+  },
+  "ui_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrains Mono",
+  "terminal": {
+    "font_family": "JetBrains Mono"
+  }
+}
