@@ -6,7 +6,6 @@ google-chrome
 # Apps
 libreoffice-fresh
 qbittorrent
-stremio-service
 localsend-bin
 
 # C/C++ toolchain

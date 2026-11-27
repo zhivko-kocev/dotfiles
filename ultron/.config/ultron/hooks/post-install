@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# After `ultron install`: the dotfiles installer once more, now that yay exists (it builds stremio-service).
+exec bash "$HOME/Projects/dotfiles/install.sh"

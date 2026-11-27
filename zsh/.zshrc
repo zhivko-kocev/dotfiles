@@ -22,6 +22,29 @@ precmd() { vcs_info }
 setopt prompt_subst
 PROMPT='%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_} %# '
 
+# Project tools without touching the repo (ultron): inside a git repository whose folder is NAME (worktrees
+# count as their main repository), ~/.config/mise/config.NAME.toml is loaded too, through MISE_ENV.
+# `ultron dev project` creates that file. This must come before `mise activate`.
+typeset -g _ultron_mise_env0=${MISE_ENV-}
+_ultron_mise_env() {
+  local common name
+  common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || common=
+  name=${${common:h}:t}
+  if [[ -n $common && -f ~/.config/mise/config.$name.toml ]]; then
+    if [[ ,$_ultron_mise_env0, == *,$name,* ]]; then
+      export MISE_ENV=$_ultron_mise_env0
+    else
+      export MISE_ENV=${_ultron_mise_env0:+$_ultron_mise_env0,}$name
+    fi
+  elif [[ -n $_ultron_mise_env0 ]]; then
+    export MISE_ENV=$_ultron_mise_env0
+  else
+    unset MISE_ENV
+  fi
+}
+chpwd_functions+=(_ultron_mise_env)
+_ultron_mise_env
+
 # Tools
 if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"

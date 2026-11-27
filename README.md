@@ -13,7 +13,7 @@ everything personal about this machine (browser, apps, monitor, disks) lives her
 | `mise` | `~/.config/mise/config.toml`: personal tool versions (bun, dotnet, go, python) |
 | `agents` | `~/.agents/AGENTS.md` (identity, rules, "This machine") and skills: `ci-cd-pipeline-builder`, `docker-development`, `find-skills` |
 | `zed` | `~/.config/zed/settings.json`: Gruvbox Dark, JetBrains Mono |
-| `ultron` | `~/.config/ultron/conf.d/10-personal.conf` (Chrome as `BROWSER`, the `projects` SSD in `MOUNTS`, LocalSend ports in `FIREWALL_ALLOW`), `~/.config/ultron/packages.txt` (Chrome, LibreOffice, qBittorrent, Stremio, LocalSend, the C/C++ toolchain), `~/.config/ultron/sway/10-personal.conf` (monitor mode, WhatsApp/Discord on workspace 7) |
+| `ultron` | `~/.config/ultron/conf.d/10-personal.conf` (Chrome as `BROWSER`, the `projects` SSD in `MOUNTS`, LocalSend ports in `FIREWALL_ALLOW`), `~/.config/ultron/packages.txt` (Chrome, LibreOffice, qBittorrent, LocalSend, the C/C++ toolchain), `~/.config/ultron/sway/10-personal.conf` (monitor mode, WhatsApp/Discord on workspace 7), `~/.config/ultron/hooks/post-install` (runs `install.sh` again once yay exists) |
 | `apps` | `~/.local/share/applications/{whatsapp,discord,stremio}.desktop`: launcher entries for the Chrome app windows and Stremio |
 | `bin` | `~/.local/bin/stremio`: starts `stremio-service` if needed, then the Stremio web app |
 | `chrome` | `~/.config/chrome-flags.conf`: Wayland, and the `gnome-libsecret` password store the restored Chrome profile needs to keep its logins |
@@ -26,6 +26,9 @@ ultron's `DOTFILES_REPO` setting (in `~/.config/ultron/ultron.conf`, or `ULTRON_
 `ultron install` clones it to `~/Projects/dotfiles` and runs `install.sh` early, before its own package and
 desktop steps, so the `ultron` package's settings, extra packages and sway overrides are already in place.
 Settings in `ultron.conf` win over `conf.d/10-personal.conf`. Nothing here depends on ultron having linked anything first.
+
+`stremio-service` (AUR) needs a build fix, so `install.sh` builds it itself (when yay is there and it's missing
+or has an update), not ultron's `packages.txt`.
 
 ## Install
 
